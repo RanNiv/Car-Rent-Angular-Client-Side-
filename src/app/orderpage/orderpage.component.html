@@ -1,0 +1,68 @@
+              <div class='container'>
+              
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="jumbotron">
+                    <div class="container">
+                      <h3>Order Approvoed</h3>
+                    </div>
+                  </div>
+                </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Car Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentPreviewCar?.Manufacturer}}</td></tr>
+                  <tr> <td><span>Model:&nbsp;</span>{{data.currentPreviewCar?.Model}}</td></tr>
+                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentPreviewCar?.PricePerDay}}</td></tr>
+                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentPreviewCar?.PricePerDayLate}}</td></tr>
+                 
+                </tbody>
+              </table>
+            </div>
+
+
+              </div>
+              
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="jumbotron">
+                    <div class="btn-group-vertical">
+                        <button class='btn btn-primary'>Save Order</button>
+                        <br/>
+                        <a  routerLink="/catalog" (click)="backtolist()" class="btn btn-primary">Back to Cars list</a>
+                      </div>
+                    </div> 
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="jumbotron">
+                        <div class="container">
+                          <h4>Order Price</h4>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <form>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Rent Start Date</label>
+                      <input type="date" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Rent End Date</label>
+                      <input type="date" class="form-control" >
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+    
+            
+
+
+
+

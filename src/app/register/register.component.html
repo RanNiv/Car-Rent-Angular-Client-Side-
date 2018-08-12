@@ -1,0 +1,41 @@
+
+<div class="container">
+  
+
+
+
+  <!--   <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> -->
+    <form  (ngSubmit)="onSubmit()" #registerForm="ngForm" >
+    <div class="form-group">
+      <label for="nameid">Full Name</label>
+      <input type="text" [(ngModel)]="fullName" name="first" class="form-control" id="nameid" placeholder="Full Name" required>
+
+   
+      <label for="idnum">ID Number</label>
+      <input type="text" class="form-control" id="idnum" placeholder="ID Number" required>
+
+
+        <label for="userid">User Name</label>
+        <input type="text" class="form-control" id="userid" placeholder="User Name" required>
+
+
+          <label for="birthdateid">Birth Date</label>
+          <input type="date" class="form-control" id="birthdateid" >
+    
+
+            <label for="genderid">Gender</label>
+            <input type="text" class="form-control" id="genderid" placeholder="Gender" required>
+     
+ 
+              <label for="emailid">Email</label>
+              <input type="email" class="form-control" id="emailid" placeholder="Email" required>
+          
+       
+                <label for="passwordid">Password</label>
+                <input type="password" class="form-control" id="passwordid" required>
+          
+              <!-- <button type="submit" [disabled]="!ngForm.valid">Submit</button> -->
+              <button type="submit"  [disabled]="!registerForm.form.valid">Submit</button>
+              </div>
+  </form>
+</div>  
