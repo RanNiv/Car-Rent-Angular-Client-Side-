@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
 fullName:string;
+id:string;
 
 
   submitted = false;
