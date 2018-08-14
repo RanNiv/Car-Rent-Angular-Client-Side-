@@ -35,11 +35,7 @@ CarsCollection:Array<Car>;
   getCarCatalog(): void /*Observable<car>*/ {
     
      this.http.get("http://localhost:57445/api/carcatalog/GetAllCarCatalog").subscribe((x:Car[])=>{this.CarsCollection=x});
-
   } 
-
-
-
 
   addUser(user:User,callback:(bool:boolean)=>void): void {
     this.http.post<boolean>("http://localhost:57445/api/carcatalog/adduser",JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
