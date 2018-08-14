@@ -29,7 +29,6 @@ this.currentPreviewCar=new Car();
 
   }
 
-
 CarsCollection:Array<Car>;
 
   getCarCatalog(): void /*Observable<car>*/ {
