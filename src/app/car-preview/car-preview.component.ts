@@ -23,9 +23,8 @@ export class CarPreviewComponent implements OnInit {
 
    displaypreview () {
 
-  console.log("click");
    this.data.isPreview=true;
-   this.data.currentPreviewCar=this.car;
+   this.data.currentCarOrder=this.car;
 
    }
 

@@ -15,6 +15,7 @@ import { FormsModule } from '../../node_modules/@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 
 
+
 const appRoutes: Routes = [
   
 
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     OrderpageComponent,
     RegisterComponent,
     FooterComponent
+ 
   ],
   imports: [
     HttpClientModule,

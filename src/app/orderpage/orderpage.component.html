@@ -1,13 +1,7 @@
               <div class='container'>
               
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="jumbotron">
-                    <div class="container">
-                      <h3>Order Approvoed</h3>
-                    </div>
-                  </div>
-                </div>
+        
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
               <table class="table table-hover">
                 <thead>
@@ -16,10 +10,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentPreviewCar?.Manufacturer}}</td></tr>
-                  <tr> <td><span>Model:&nbsp;</span>{{data.currentPreviewCar?.Model}}</td></tr>
-                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentPreviewCar?.PricePerDay}}</td></tr>
-                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentPreviewCar?.PricePerDayLate}}</td></tr>
+                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentCarOrder?.Manufacturer}}</td></tr>
+                  <tr> <td><span>Model:&nbsp;</span>{{data.currentCarOrder?.Model}}</td></tr>
+                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentCarOrder?.PricePerDay}}</td></tr>
+                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentCarOrder?.PricePerDayLate}}</td></tr>
                  
                 </tbody>
               </table>
@@ -27,12 +21,21 @@
 
 
               </div>
-              
+              <div class='row'>
+                  <div class="orderstatus">
+                    <div class="container">
+                      <h3 class="{{data.OrderStaus.class}}">{{data.OrderStaus.message}}</h3>
+                    </div>
+                  </div>
+              </div>
+
+
+
               <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     <div class="jumbotron">
                     <div class="btn-group-vertical">
-                        <button class='btn btn-primary'>Save Order</button>
+                        <button class='btn btn-primary'>Order This Car</button>
                         <br/>
                         <a  routerLink="/catalog" (click)="backtolist()" class="btn btn-primary">Back to Cars list</a>
                       </div>
@@ -42,6 +45,7 @@
                     <div class="jumbotron">
                         <div class="container">
                           <h4>Order Price</h4>
+                          <div>{{data.currentCarOrderPrice| currency:'ILS'}}</div>
                         </div>
                       </div>
                 </div>
@@ -50,15 +54,21 @@
                 <form>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Rent Start Date</label>
-                      <input type="date" class="form-control" >
+                      <input type="date" class="form-control" [(ngModel)]="data.currentCarOrderStartDate" name="startdate" >
                     </div>
                     <div class="form-group">
-                      <label for="formGroupExampleInput2">Rent End Date</label>
-                      <input type="date" class="form-control" >
+                      <label for="formGroupExampleInput2">Rent End Date</label> 
+                      <input type="date" class="form-control" [(ngModel)]="data.currentCarOrderEndDate" name="enddate" >
                     </div>
+
+                    
+                    <button type="button" class="btn btn-large btn-block btn-primary" (click)="data.calculatePrice()"> Show Price</button>
+                   
                   </form>
                 </div>
               </div>
+
+
             </div>
     
             

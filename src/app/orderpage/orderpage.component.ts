@@ -10,7 +10,7 @@ export class OrderpageComponent implements OnInit {
 
   constructor(private data:DataService) { 
 console.log("this is order page");
-console.log(this.data.currentPreviewCar);
+console.log(this.data.currentCarOrder);
 
     
   }

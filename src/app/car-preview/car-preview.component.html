@@ -21,14 +21,16 @@
           <div class="row">
             
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <img   class='displayimage'  [src]="data.currentPreviewCar.Picture"  alt="Responsive image">
+                <img   class='displayimage'  [src]="data.currentCarOrder.Picture"  alt="Responsive image">
                 <br/>
               <!--   (click)="displaypreview()" after click reference error  -->
 
 
+
               <div class="btn-group-vertical">
-                  <a routerLink="/order/{{data.currentPreviewCar.CarID}}"  role="button" class='btn btn-info' > order car</a>
-                  <button class='btn btn-info'>Calculate cost</button>
+                  <a routerLink="/order/{{data.currentCarOrder.CarID}}"  role="button" class='btn btn-primary' >Order and price</a>
+      
+                  <a *ngIf="data.isPreview" routerLink="/catalog" (click)="backtolist()" class="btn btn-info">Back to Cars list</a>
                 </div>
 
              
@@ -47,19 +49,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentPreviewCar?.Manufacturer}}</td></tr>
-                  <tr> <td><span>Model:&nbsp;</span>{{data.currentPreviewCar.Model}}</td></tr>
-                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentPreviewCar.PricePerDay}}</td></tr>
-                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentPreviewCar.PricePerDayLate}}</td></tr>
-                  <tr> <td><span>Year:&nbsp;</span>{{data.currentPreviewCar.Year}}</td></tr>
-                  <tr> <td><span>Gear:&nbsp;</span>{{data.currentPreviewCar.Gear}}</td></tr>
-                  <tr> <td><span>Branch Location:&nbsp;</span>{{data.currentPreviewCar.Branch_Location}}</td></tr>
+                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentCarOrder?.Manufacturer}}</td></tr>
+                  <tr> <td><span>Model:&nbsp;</span>{{data.currentCarOrder.Model}}</td></tr>
+                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentCarOrder.PricePerDay}}</td></tr>
+                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentCarOrder.PricePerDayLate}}</td></tr>
+                  <tr> <td><span>Year:&nbsp;</span>{{data.currentCarOrder.Year}}</td></tr>
+                  <tr> <td><span>Gear:&nbsp;</span>{{data.currentCarOrder.Gear}}</td></tr>
+                  <tr> <td><span>Branch Location:&nbsp;</span>{{data.currentCarOrder.Branch_Location}}</td></tr>
    
                 </tbody>
               </table>
             </div>
           </div>
-<a *ngIf="data.isPreview" routerLink="/catalog" (click)="backtolist()" class="btn btn-primary">Back to Cars list</a>
+
 </div>
 </div>
 </div>
