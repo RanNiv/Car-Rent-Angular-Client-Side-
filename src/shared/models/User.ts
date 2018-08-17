@@ -1,5 +1,3 @@
-
-
     export class User {
         UserID: number;
         FullName: string;

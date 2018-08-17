@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data:DataService) { }
+
+  onSubmit(){
+
+
+  }
+
 
   ngOnInit() {
   }

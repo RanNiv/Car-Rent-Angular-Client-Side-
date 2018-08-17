@@ -16,6 +16,11 @@ console.log(this.data.currentCarOrder);
   }
 
 
+  postorder () {
+  
+
+  }
+
   backtolist () {
     //prevent this part overflow the html part of the catalog 
     //Try to move to service
