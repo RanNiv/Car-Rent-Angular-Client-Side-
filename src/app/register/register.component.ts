@@ -26,7 +26,7 @@ console.log(data.RegiserUser);
     this.submitted = true;
     console.log(this.data.RegiserUser);
 
-    this.data.addUser(this.data.RegiserUser,()=>{console.log("call back post")});
+    this.data.addUser(this.data.RegiserUser,()=>{console.log("call back post user")});
   
   
   }

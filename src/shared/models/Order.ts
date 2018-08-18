@@ -1,6 +1,4 @@
-
-
-    export interface Order {
+    export class Order {
         OrderID: number;
         OrderStartDate: Date;
         OrderReturnDate: Date;

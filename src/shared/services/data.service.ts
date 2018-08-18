@@ -4,8 +4,9 @@ import { Car } from '../models/car';
 import { User } from '../models/User';
 import { IValidState } from '../models/ivalidstate';
 import { Order } from '../models/Order';
-import { AppUser } from '../models/AppUser';
 import { UserLogin } from '../models/UserLogin';
+import { Observable } from '../../../node_modules/rxjs';
+
 
 
 @Injectable({
@@ -13,14 +14,10 @@ import { UserLogin } from '../models/UserLogin';
 })
 export class DataService {
 
-UserType:AppUser;  //Type of User can change after using login form
+
 UserName:string="Guest"; //display in Header Component
 
-setUserName () {
-  if(this.UserType=AppUser.Visitor){
-    this.UserName="Guest";
-  }
-}
+
 
 userLogin:UserLogin;
 
@@ -55,12 +52,9 @@ link:string="http://localhost:57445/api/carcatalog";
 
 
   constructor(private http:HttpClient) { 
-    this.UserType=AppUser.Visitor;
-    this.RegiserUser=new User();//for register form ngmodel stater
+   
+     this.RegiserUser=new User();//for register form ngmodel stater
      this.userLogin=new UserLogin();
-
-this.setUserName();
-
     this.currentDay=new Date();
     this.currentDay.setHours(0,0,0,0);
 
@@ -87,7 +81,7 @@ addUser(user:User,callback:(bool:boolean)=>void): void {
 
 
 addUOrder(order:Order,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>("http://localhost:57445/api/carcatalog/adduser",JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
+  this.http.post<boolean>("http://localhost:57445/api/carcatalog/addorder",JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
 
@@ -95,23 +89,14 @@ addUOrder(order:Order,callback:(bool:boolean)=>void): void {
 
 
 calculatePrice() {
-
-
- 
- 
-
   this.currentCarOrderStartDate=new Date(this.currentCarOrderStartDate);
-   this.currentCarOrderEndDate=new Date(this.currentCarOrderEndDate);
+  this.currentCarOrderEndDate=new Date(this.currentCarOrderEndDate);
 
- 
-  
 let isDatesCorrect:boolean=this.currentCarOrderStartDate!=undefined && this.currentCarOrderEndDate!=undefined
 && this.currentCarOrderEndDate>=this.currentCarOrderStartDate
 && this.currentCarOrderStartDate.getTime()>=this.currentDay.getTime()
 && this.currentCarOrderEndDate.getTime()>=this.currentDay.getTime()
-
 let RentDays:number=1;
-
 
 if(!isDatesCorrect){
 this.OrderStaus.message=this.ErrorMessage;
@@ -119,26 +104,89 @@ this.OrderStaus.class="wrongvalues";
 }
 
 
-
 else {
   this.OrderStaus.message="Order Status";
   this.OrderStaus.class="regular";
   this.OrderStaus.btnclass="btn btn-primary active"
-  //this.currentCarOrderPrice=this.currentCarOrder.PricePerDay*(this.currentCarOrderEndDate.getTime()-this.currentCarOrderStartDate.getTime())/(24*3600*1000*7);
   
-  var timeDiff = Math.abs(this.currentCarOrderStartDate.getTime() - this.currentCarOrderEndDate.getTime());
-  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-
-
-/* console.log(diffDays+1);
-console.log(this.currentCarOrder.PricePerDay); */
+  let timeDiff = Math.abs(this.currentCarOrderStartDate.getTime() - this.currentCarOrderEndDate.getTime());
+  let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
   this.currentCarOrderPrice=this.currentCarOrder.PricePerDay*(diffDays+1);
-
 }
 
 }
 
+
+
+
+
+CheckCredentials(user:UserLogin): void {
+
+  let basicUrl="http://localhost:57445/api/carcatalog/GetUserName";
+  let apiURL = `${basicUrl}?name=${user.name}&&password=${user.password}`;
+    this.http.get(apiURL).subscribe((x:User)=>{this.RegiserUser=x;});
+
+
 }
+
+
+
+ Testput(user: User) {
+  let headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+
+  let url = `${this.link}/TestPut/${user.UserID}`;
+
+  return this.http
+   .put(url, JSON.stringify(user), { headers: {"content-type": "application/json" }})
+   .subscribe((x:User)=>{this.RegiserUser=x;console.log(x)});
+            
+}
+
+
+  
+  
+  doDELETE() {
+    console.log("DELETE");
+    let url:string=`${this.link}/deleteuser/?userid=1`;
+    let search = new URLSearchParams();
+    search.set('userid', '1');
+   // search.set('limit', 25);
+    this.http.delete(url).subscribe(res => console.log(res.toString()));
+  }
+
+
+
+
+/* TestDelete(userid:number) :void {
+
+  console.log(userid);
+  let url:string=`${this.link}/deleteuser`;
+
+  console.log(url);
+    this.http.delete(url);
+            
+} */
+
+
+
+
+
+
+
+
+
+}
+   
+
+
+
+
+
+
+
+
+
+
 

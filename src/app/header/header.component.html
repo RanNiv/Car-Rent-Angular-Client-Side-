@@ -10,10 +10,13 @@
         <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
         
         <li><a routerLink="/home"><span >Home Page</span> </a></li>
-        <li><a routerLink="/catalog"><span >Cars Catalog</span>  </a></li>
-        <li ><a><span class='hello' >Hello {{data.UserName}}</span></a></li>
+        <li><a routerLink="/catalog" (click)="resetcatalog()" ><span >Cars Catalog</span>  </a></li>
+        <li class='hello'> Hello {{data.RegiserUser.FullName}}&nbsp; {{data.RegiserUser.Role}}</li>
+       
       </ul>
     
+
+
     </div>
     <div>
   

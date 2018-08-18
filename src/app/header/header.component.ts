@@ -10,9 +10,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(private data:DataService) { 
 
+  }
 
+  resetcatalog(){
+this.data.isPreview=false;
 
   }
+
 
   ngOnInit() {
   }
