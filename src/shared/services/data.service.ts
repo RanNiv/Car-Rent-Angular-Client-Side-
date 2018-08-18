@@ -145,8 +145,6 @@ CheckCredentials(user:UserLogin): void {
 }
 
 
-  
-  
   doDELETE() {
     console.log("DELETE");
     let url:string=`${this.link}/deleteuser/?userid=1`;
