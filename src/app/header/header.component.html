@@ -12,7 +12,7 @@
         <li><a routerLink="/home"><span >Home Page</span> </a></li>
         <li><a routerLink="/catalog" (click)="resetcatalog()" ><span >Cars Catalog</span>  </a></li>
         <li class='hello'> Hello {{data.RegiserUser.FullName}}&nbsp; {{data.RegiserUser.Role}}</li>
-       
+        <li *ngIf="data.RegiserUser.FullName!='Guest'"><a routerLink="/orderlist"  ><span >My Orders</span>  </a></li>
       </ul>
     
 

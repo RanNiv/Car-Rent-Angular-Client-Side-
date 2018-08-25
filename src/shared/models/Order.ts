@@ -5,5 +5,7 @@
         Actualreturndate: Date;
         UserID: number;
         RegisterNumber: string;
+        Manufacturer:string;
+        Model:string;
     }
 

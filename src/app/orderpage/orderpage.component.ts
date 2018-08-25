@@ -10,8 +10,7 @@ import { Order } from '../../shared/models/Order';
 export class OrderpageComponent implements OnInit {
 
   constructor(private data:DataService) { 
-console.log("this is order page");
-console.log(this.data.currentCarOrder);
+
 
     
   }

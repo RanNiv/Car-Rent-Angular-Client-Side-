@@ -1,0 +1,32 @@
+<div class='container'>
+<div class='row'>
+
+<div *ngIf="!isPreview" class="panel panel-info">
+    <div class="panel-heading">
+    
+ <h3> {{data.currentUserOrderDisplay?.Manufacturer}}</h3>
+ <h4>{{data.currentUserOrderDisplay?.Model}}</h4>
+
+
+    </div>
+    <div class="panel-body">
+      <p class="panel-title"> Start Date: {{data.currentUserOrderDisplay?.OrderStartDate|date: 'dd/MM/yyyy'}}</p>
+      <p class="panel-title"> Expected Return Date: {{data.currentUserOrderDisplay?.OrderReturnDate|date: 'dd/MM/yyyy'}}</p>
+      <p class="panel-title"> Actual Return Date: {{data.currentUserOrderDisplay?.Actualreturndate|date: 'dd/MM/yyyy'}}</p>
+     
+    </div>
+  </div>
+</div>
+<hr/>
+<a  routerLink="/orderlist"  class="btn btn-info">Back to Cars list</a>
+
+
+
+
+</div>
+
+
+
+
+
+

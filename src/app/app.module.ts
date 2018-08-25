@@ -13,6 +13,8 @@ import { OrderpageComponent } from './orderpage/orderpage.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { OrderPreviewComponent } from './order-preview/order-preview.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 
@@ -26,7 +28,9 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'carpreview/:id', component: CarPreviewComponent },
   { path: 'order/:id', component: OrderpageComponent },
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  { path: 'orderlist', component: OrderListComponent },
+  { path: 'userorders/:id', component: OrderPreviewComponent },
+   {path: '', redirectTo: '/home', pathMatch: 'full'}
   ,
  
 
@@ -46,7 +50,9 @@ const appRoutes: Routes = [
     CatalogComponent,
     OrderpageComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    OrderPreviewComponent,
+    OrderListComponent
  
   ],
   imports: [

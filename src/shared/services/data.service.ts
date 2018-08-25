@@ -67,21 +67,18 @@ this.currentCarOrder=new Car();
 
 CarsCollection:Array<Car>;
 
-
-
-
 getCarCatalog(): void /*Observable<car>*/ {
-     this.http.get("http://localhost:57445/api/carcatalog/GetAllCarCatalog").subscribe((x:Car[])=>{this.CarsCollection=x});
+     this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x});
 } 
 
 addUser(user:User,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>("http://localhost:57445/api/carcatalog/adduser",JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
+  this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
 
 
 addUOrder(order:Order,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>("http://localhost:57445/api/carcatalog/addorder",JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
+  this.http.post<boolean>(`${this.link}/adduser/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
 
@@ -123,12 +120,26 @@ else {
 
 CheckCredentials(user:UserLogin): void {
 
-  let basicUrl="http://localhost:57445/api/carcatalog/GetUserName";
+  let basicUrl=`${this.link}/GetUserName`;
   let apiURL = `${basicUrl}?name=${user.name}&&password=${user.password}`;
+
+
     this.http.get(apiURL).subscribe((x:User)=>{this.RegiserUser=x;});
-
-
 }
+
+currentUserOrders:Array<Order>;
+currentUserOrderDisplay:Order;
+
+getOrders (id:number=0) {
+  let basicUrl=`${this.link}/GetOrders`;
+  let apiURL = `${basicUrl}?id=${this.RegiserUser.UserID}`;
+    this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.currentUserOrders=x;
+    if(id!=0)
+    this.currentUserOrderDisplay=this.currentUserOrders.find(x=>x.OrderID==id);
+    
+    });
+}
+
 
 
 
