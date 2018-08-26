@@ -10,9 +10,10 @@ export class Car {
     Type:null;
     Km:number;
     Picture:string; 
-    Proper:boolean;
+    ISProper:boolean;
+    ISRented:boolean;
     RegisterNumber:string;
-    Branch_Location:string;
+    BranchLocation:string;
 
 
 }

@@ -78,7 +78,7 @@ addUser(user:User,callback:(bool:boolean)=>void): void {
 
 
 addUOrder(order:Order,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>(`${this.link}/adduser/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
+  this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
 
