@@ -54,6 +54,7 @@ link:string="http://localhost:57445/api/carcatalog";
   constructor(private http:HttpClient) { 
    
      this.RegiserUser=new User();//for register form ngmodel stater
+    
      this.userLogin=new UserLogin();
     this.currentDay=new Date();
     this.currentDay.setHours(0,0,0,0);
@@ -139,6 +140,18 @@ getOrders (id:number=0) {
     
     });
 }
+
+Returncar(regiserNumber:string) {
+
+  console.log("step 2");
+  let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
+console.log(url);
+return this.http
+   .put(url, JSON.stringify(this.RegiserUser), { headers: {"content-type": "application/json" }})
+   .subscribe((x:User)=>{this.RegiserUser=x;console.log(x)});
+
+}
+
 
 
 
