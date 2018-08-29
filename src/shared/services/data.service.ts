@@ -67,21 +67,32 @@ this.currentCarOrder=new Car();
   }
 
 CarsCollection:Array<Car>;
+usersList:Array<User>;
 
 getCarCatalog(): void /*Observable<car>*/ {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x});
 } 
 
-addUser(user:User,callback:(bool:boolean)=>void): void {
+/* addUser(user:User,callback:(bool:boolean)=>void): void {
   this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
-}
+} */
 
+addUser(user:User): void {
+  this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((response)=>{
+    console.log(response)}); 
+
+  }
 
 addUOrder(order:Order,callback:(bool:boolean)=>void): void {
   this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
+
+
+getCUsers(): void /*Observable<car>*/ {
+  this.http.get(`${this.link}/GetUsers`).subscribe((x:User[])=>{this.usersList=x;});
+} 
 
 
 
@@ -148,7 +159,7 @@ Returncar(regiserNumber:string) {
 console.log(url);
 return this.http
    .put(url, JSON.stringify(this.RegiserUser), { headers: {"content-type": "application/json" }})
-   .subscribe((x:User)=>{this.RegiserUser=x;console.log(x)});
+   .subscribe((response)=>{console.log(response)});
 
 }
 
@@ -169,11 +180,15 @@ return this.http
 }
 
 
-  doDELETE() {
+  deleteUser(id:number) {
     console.log("DELETE");
-    let url:string=`${this.link}/deleteuser/?userid=1`;
-    let search = new URLSearchParams();
-    search.set('userid', '1');
+    console.log(id);
+    let url:string=`${this.link}/deleteuser/?userid=${id}`;
+
+
+    console.log(url);
+/*     let search = new URLSearchParams();
+    search.set('userid', '1'); */
    // search.set('limit', 25);
     this.http.delete(url).subscribe(res => console.log(res.toString()));
   }

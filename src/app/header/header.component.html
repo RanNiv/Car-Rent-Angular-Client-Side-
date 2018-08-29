@@ -8,7 +8,8 @@
         <!------------------------------------------->
         <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
         <li *ngIf="data.RegiserUser.Role=='worker'" ><a routerLink="/returncar"><span class="glyphicon glyphicon-user"></span>Return Car</a></li>
-        <li *ngIf="data.RegiserUser.Role=='manager'" ><a routerLink="/register"><span class="glyphicon glyphicon-user"></span>Manager Settings</a></li>
+      
+        
         <!------------------------------------------->
         <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
         <li *ngIf="data.RegiserUser.Role=='worker'||data.RegiserUser.Role=='manager'" ><a routerLink="/home"><span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
@@ -19,9 +20,22 @@
         <li class='hello'> Hello {{data.RegiserUser.FullName}}&nbsp; {{data.RegiserUser.Role}}</li>
         <li *ngIf="data.RegiserUser.FullName!='Guest'"><a routerLink="/orderlist"  ><span >My Orders</span>  </a></li>
       </ul>
-    
-
-
     </div>
+
+    <nav *ngIf="data.RegiserUser.Role=='manager'" class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" >Manager Settings</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li *ngIf="data.RegiserUser.Role=='manager'" ><a routerLink="/usersmanagement"><span class="glyphicon glyphicon-user"></span>Users</a></li>
+            <li><a href="#">Cars Inventory</a></li>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Car Types</a></li>
+          </ul>
+        </div>
+      </nav>
+
     <div>
   

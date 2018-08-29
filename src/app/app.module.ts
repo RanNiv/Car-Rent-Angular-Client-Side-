@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { OrderPreviewComponent } from './order-preview/order-preview.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { CarReturnComponent } from './car-return/car-return.component';
+import { UsersManagementComponent } from './users-management/users-management.component';
 
 
 
@@ -32,6 +33,8 @@ const appRoutes: Routes = [
   { path: 'orderlist', component: OrderListComponent },
   { path: 'userorders/:id', component: OrderPreviewComponent },
   { path: 'returncar', component: CarReturnComponent },
+  { path: 'usersmanagement', component: UsersManagementComponent },
+  //users-management
    {path: '', redirectTo: '/home', pathMatch: 'full'}
   ,
  
@@ -55,7 +58,8 @@ const appRoutes: Routes = [
     FooterComponent,
     OrderPreviewComponent,
     OrderListComponent,
-    CarReturnComponent
+    CarReturnComponent,
+    UsersManagementComponent
  
   ],
   imports: [

@@ -1,0 +1,30 @@
+
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th>Update</th>
+        <th>Delete</th>
+      <th>Id Num</th>
+      <th>Name</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let data of data.usersList" > 
+      <td><button class="btn btn-success" (click)="updateUser(data.idNum)" >Update</button></td>
+      <td><button class="btn btn-danger" (click)="deleteUser($event,data.UserID)" >Delete</button></td>
+      <td> {{data.IdNum}} </td>
+      <td> {{data.FullName}}</td>
+      <td>
+      <input type="text" name="UserName" [(ngModel)]="data.Role">
+    </td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-large btn-block btn-primary" (click)="data.UpdateUsersList()"> Update Data</button>
+
+
+
+</div>

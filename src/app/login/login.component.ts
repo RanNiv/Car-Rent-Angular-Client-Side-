@@ -34,11 +34,7 @@ console.log("TestEdit");
 
 
 
-TestDelete () {
-  console.log("TestDelete");
-this.data.doDELETE();
 
-}
 
 
 
