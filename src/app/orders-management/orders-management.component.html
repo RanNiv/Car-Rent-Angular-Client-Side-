@@ -1,0 +1,36 @@
+
+<div class="container">
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Update</th>
+          <th>RegisterNumber</th>
+          <th>Manufacturer</th>
+          <th>Model</th>
+          <th>Order Start Date</th>
+          <th>Order Return Date</th>
+          <th>Actual return date</th>
+
+           <th>Delete</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of data.currentOrders">
+          <td><button class="btn btn-success" (click)="updateOrderinfo($event,data)" >Update</button></td>
+          <td>{{data.RegisterNumber}}</td>
+          <td>{{data.Manufacturer}}</td>
+          <td>{{data.Model}}</td>
+         
+          <td title="{{data.OrderStartDate|date: 'dd/MM/yyyy'}}" ><input type="date"  [(ngModel)]="data.OrderStartDate"  ></td>
+          <td title="{{data.OrderReturnDate|date: 'dd/MM/yyyy'}}"><input type="date"  [(ngModel)]="data.OrderReturnDate"></td>
+          <td title="{{data.Actualreturndate|date: 'dd/MM/yyyy'}}"><input type="date"  [(ngModel)]="data.Actualreturndate"></td>
+          <td><button class="btn btn-danger" (click)="deleteOrder($event,data.OrderID)" >Delete</button></td> 
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  
+  

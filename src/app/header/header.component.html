@@ -30,9 +30,10 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li *ngIf="data.RegiserUser.Role=='manager'" ><a routerLink="/usersmanagement"><span class="glyphicon glyphicon-user"></span>Users</a></li>
-            <li><a href="#">Cars Inventory</a></li>
-            <li><a href="#">Orders</a></li>
-            <li><a href="#">Car Types</a></li>
+            <li><a routerLink="/carsinventory"><span class="glyphicon glyphicon-edit"></span>Cars Inventory</a></li>
+            <li><a routerLink="/carstypes"><span class="glyphicon glyphicon-ok"></span>Cars Types</a></li>
+            <li><a routerLink="/carsorderslist"><span class="glyphicon glyphicon-list-alt"></span>Cars Orders</a></li>
+           
           </ul>
         </div>
       </nav>

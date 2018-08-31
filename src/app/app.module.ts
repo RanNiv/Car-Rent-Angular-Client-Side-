@@ -17,6 +17,9 @@ import { OrderPreviewComponent } from './order-preview/order-preview.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { CarReturnComponent } from './car-return/car-return.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
+import { CarInventoryManagementComponent } from './car-inventory-management/car-inventory-management.component';
+import { CarTypesManagementComponent } from './car-types-management/car-types-management.component';
+import { OrdersManagementComponent } from './orders-management/orders-management.component';
 
 
 
@@ -34,7 +37,11 @@ const appRoutes: Routes = [
   { path: 'userorders/:id', component: OrderPreviewComponent },
   { path: 'returncar', component: CarReturnComponent },
   { path: 'usersmanagement', component: UsersManagementComponent },
+  { path: 'carsinventory', component: CarInventoryManagementComponent },
+  { path: 'carstypes', component:CarTypesManagementComponent },
+  { path: 'carsorderslist', component:OrdersManagementComponent },
   //users-management
+  //carsinventory
    {path: '', redirectTo: '/home', pathMatch: 'full'}
   ,
  
@@ -59,7 +66,10 @@ const appRoutes: Routes = [
     OrderPreviewComponent,
     OrderListComponent,
     CarReturnComponent,
-    UsersManagementComponent
+    UsersManagementComponent,
+    CarInventoryManagementComponent,
+    CarTypesManagementComponent,
+    OrdersManagementComponent
  
   ],
   imports: [

@@ -1,0 +1,17 @@
+
+<div class="container">
+<div class='row'>
+
+<div class="col-xs-6 col-xs-offset-4 col-sm-6 col-sm-offset-4 col-md-6 col-md-offset-4 col-lg-6 col-lg-offset-6">
+      <div *ngFor="let data of data.CarsTypesCollection" class="checkbox" >
+
+      <input type="checkbox" name="IsForRent"  [(ngModel)]="data.IsForRent">
+      <span> {{data.Manufacturer}} {{data.Model}}</span>
+  </div>
+  <button type="submit" (click)="submittypes()" class="btn btn-default">Submit</button>
+</div>
+</div>
+
+
+
+

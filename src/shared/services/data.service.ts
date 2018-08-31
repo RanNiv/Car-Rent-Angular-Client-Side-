@@ -6,6 +6,8 @@ import { IValidState } from '../models/ivalidstate';
 import { Order } from '../models/Order';
 import { UserLogin } from '../models/UserLogin';
 import { Observable } from '../../../node_modules/rxjs';
+import { CarType } from '../models/CarType';
+
 
 
 
@@ -67,16 +69,30 @@ this.currentCarOrder=new Car();
   }
 
 CarsCollection:Array<Car>;
+CarsTypesCollection:Array<CarType>=new Array<CarType>();
 usersList:Array<User>;
 
 getCarCatalog(): void /*Observable<car>*/ {
-     this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x});
+     this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x;
+      let carTypes=  new Set(this.CarsCollection.map(m=>`${m.Manufacturer}-*-${m.Model}`));
+
+      console.log(carTypes);
+      carTypes.forEach(x=>this.CarsTypesCollection.push(new CarType(x,true)));
+
+      console.log(this.CarsTypesCollection);
+
+    });
 } 
 
-/* addUser(user:User,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
-  ()=>{callback(false)});
-} */
+updateCarsForRent():void {
+  console.log("-----")
+console.log(this.CarsTypesCollection);
+
+  let url = `${this.link}/updatecarsforrent`;
+   this.http.put(url, JSON.stringify(this.CarsTypesCollection), { headers: {"content-type": "application/json" }})
+  .subscribe((x)=>console.log(x));
+
+}
 
 addUser(user:User): void {
   this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((response)=>{
@@ -88,6 +104,29 @@ addUOrder(order:Order,callback:(bool:boolean)=>void): void {
   this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
   ()=>{callback(false)});
 }
+
+
+updateOrder(order:Order):void {
+console.log("-----")
+console.log(order);
+
+  let url = `${this.link}/updateorder`;
+   this.http.put(url, JSON.stringify(order), { headers: {"content-type": "application/json" }})
+  .subscribe((x)=>console.log(x));
+
+}
+
+
+deleteOrder(orderid:number) {
+  console.log("DELETE");
+
+  let url:string=`${this.link}/deleteorder/?orderid=${orderid}`;
+  console.log(url);
+  this.http.delete(url).subscribe(res => console.log(res.toString()));
+}
+
+
+
 
 
 getCUsers(): void /*Observable<car>*/ {
@@ -139,15 +178,15 @@ CheckCredentials(user:UserLogin): void {
     this.http.get(apiURL).subscribe((x:User)=>{this.RegiserUser=x;});
 }
 
-currentUserOrders:Array<Order>;
+currentOrders:Array<Order>;
 currentUserOrderDisplay:Order;
 
-getOrders (id:number=0) {
+getOrders (id:number) {
   let basicUrl=`${this.link}/GetOrders`;
-  let apiURL = `${basicUrl}?id=${this.RegiserUser.UserID}`;
-    this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.currentUserOrders=x;
+  let apiURL = `${basicUrl}?id=${id}`;
+    this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.currentOrders=x;
     if(id!=0)
-    this.currentUserOrderDisplay=this.currentUserOrders.find(x=>x.OrderID==id);
+    this.currentUserOrderDisplay=this.currentOrders.find(x=>x.OrderID==id);
     
     });
 }
@@ -163,6 +202,14 @@ return this.http
 
 }
 
+updateCarInfo (car:Car) {
+
+  console.log(car);
+  let url = `${this.link}/EditCarData?car=${car}`;
+  return this.http
+  .put(url, JSON.stringify(car), { headers: {"content-type": "application/json" }})
+  .subscribe((x)=>console.log(x));
+}
 
 
 
@@ -184,12 +231,16 @@ return this.http
     console.log("DELETE");
     console.log(id);
     let url:string=`${this.link}/deleteuser/?userid=${id}`;
-
-
     console.log(url);
-/*     let search = new URLSearchParams();
-    search.set('userid', '1'); */
-   // search.set('limit', 25);
+    this.http.delete(url).subscribe(res => console.log(res.toString()));
+  }
+
+
+  deleteCar(carid:number) {
+    console.log("DELETE");
+  
+    let url:string=`${this.link}/deletecar/?carid=${carid}`;
+    console.log(url);
     this.http.delete(url).subscribe(res => console.log(res.toString()));
   }
 
