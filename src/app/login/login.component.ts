@@ -19,15 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-/* test area */
-
-TestEdit () {
-  this.data.Testput(this.data.RegiserUser);
-console.log("TestEdit");
-
-
-  }
-
 
 
 

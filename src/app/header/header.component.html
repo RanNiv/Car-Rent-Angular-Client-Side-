@@ -6,19 +6,23 @@
       </div>
       <ul class="nav navbar-nav">
         <!------------------------------------------->
-        <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
         <li *ngIf="data.RegiserUser.Role=='worker'" ><a routerLink="/returncar"><span class="glyphicon glyphicon-user"></span>Return Car</a></li>
-      
+        <li *ngIf="data.RegiserUser.Role=='Customer'"><a routerLink="/orderlist"  ><span >My Orders</span>  </a></li>
+        <li *ngIf="data.RegiserUser.Role!='Guest'" ><a routerLink="/home" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
         
+      
+         
         <!------------------------------------------->
         <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
-        <li *ngIf="data.RegiserUser.Role=='worker'||data.RegiserUser.Role=='manager'" ><a routerLink="/home"><span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
+        <li *ngIf="data.RegiserUser.Role=='worker'||data.RegiserUser.Role=='manager'" ><a routerLink="/home"><span class="glyphicon glyphicon-log-out" click="logout()" ></span> Logout</a></li>
         <!------------------------------------------->
 
         <li><a routerLink="/home"><span >Home Page</span> </a></li>
-        <li *ngIf="data.RegiserUser.Role=='customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/catalog" (click)="resetcatalog()" ><span >Cars Catalog</span>  </a></li>
-        <li class='hello'> Hello {{data.RegiserUser.FullName}}&nbsp; {{data.RegiserUser.Role}}</li>
-        <li *ngIf="data.RegiserUser.FullName!='Guest'"><a routerLink="/orderlist"  ><span >My Orders</span>  </a></li>
+        <li *ngIf="data.RegiserUser.Role=='Customer'||data.RegiserUser.Role=='Guest'" ><a routerLink="/catalog" ><span >Cars Catalog</span>  </a></li>
+        <li *ngIf="data.RegiserUser.Role=='worker'||data.RegiserUser.Role=='manager'" class='hello'> Hello {{data.RegiserUser.FullName}}&nbsp;  {{data.RegiserUser.Role}}</li>
+        <li *ngIf="data.RegiserUser.Role=='Guest'||data.RegiserUser.Role=='Customer'" class='hello'> Hello {{data.RegiserUser.FullName}}</li>
+       
       </ul>
     </div>
 

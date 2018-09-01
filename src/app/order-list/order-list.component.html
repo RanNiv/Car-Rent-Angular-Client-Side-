@@ -1,6 +1,6 @@
 <div class='row'>
 
-<div *ngFor="let data of data.currentUserOrders">
+<div *ngFor="let data of data.currentOrders">
 
 
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -15,14 +15,6 @@
               <p>
                   {{data.Model}}
              </p>
-
-             <p>
-                List
-           </p>
-
-
-
-       
            <a routerLink="/userorders/{{data.OrderID}}" class='btn btn-info'>Preview</a>
           
             </div>

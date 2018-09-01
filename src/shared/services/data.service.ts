@@ -96,7 +96,23 @@ console.log(this.CarsTypesCollection);
 
 addUser(user:User): void {
   this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((response)=>{
-    console.log(response)}); 
+    
+    alert ("You Log In The System");
+    location.reload();
+  },
+  
+  (errors)=>{
+let errorMessage:string="";
+console.log(errors.error);
+
+for (let errorText of errors.error )
+errorMessage+=errorText+'\n';
+
+alert (errorMessage);
+
+  }
+  
+  ); 
 
   }
 
@@ -166,9 +182,6 @@ else {
 }
 
 
-
-
-
 CheckCredentials(user:UserLogin): void {
 
   let basicUrl=`${this.link}/GetUserName`;
@@ -181,15 +194,31 @@ CheckCredentials(user:UserLogin): void {
 currentOrders:Array<Order>;
 currentUserOrderDisplay:Order;
 
-getOrders (id:number) {
+
+getOrders (userid:number) {
+console.log("from getOrders");
+console.log(userid);
   let basicUrl=`${this.link}/GetOrders`;
-  let apiURL = `${basicUrl}?id=${id}`;
+  let apiURL = `${basicUrl}?id=${userid}`;
     this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.currentOrders=x;
-    if(id!=0)
-    this.currentUserOrderDisplay=this.currentOrders.find(x=>x.OrderID==id);
-    
+    if(userid!=0)
+    this.currentUserOrderDisplay=this.currentOrders.find(x=>x.OrderID==userid);
     });
 }
+
+
+getUserOrder (orderid:number) {
+  console.log("from getUserOrder");
+  console.log(orderid);
+    let basicUrl=`${this.link}/GetUserOrder`;
+    let apiURL = `${basicUrl}?id=${orderid}`;
+      this.http.get(apiURL).subscribe((x:Order)=>{ this.currentUserOrderDisplay=x;});
+  }
+
+
+
+
+
 
 Returncar(regiserNumber:string) {
 
@@ -213,20 +242,6 @@ updateCarInfo (car:Car) {
 
 
 
-
- Testput(user: User) {
-  let headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-
-  let url = `${this.link}/TestPut/${user.UserID}`;
-
-  return this.http
-   .put(url, JSON.stringify(user), { headers: {"content-type": "application/json" }})
-   .subscribe((x:User)=>{this.RegiserUser=x;console.log(x)});
-            
-}
-
-
   deleteUser(id:number) {
     console.log("DELETE");
     console.log(id);
@@ -243,26 +258,6 @@ updateCarInfo (car:Car) {
     console.log(url);
     this.http.delete(url).subscribe(res => console.log(res.toString()));
   }
-
-
-
-
-/* TestDelete(userid:number) :void {
-
-  console.log(userid);
-  let url:string=`${this.link}/deleteuser`;
-
-  console.log(url);
-    this.http.delete(url);
-            
-} */
-
-
-
-
-
-
-
 
 
 }

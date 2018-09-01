@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/services/data.service';
+import { User } from '../../shared/models/User';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,19 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  resetcatalog(){
+
+
+/*   resetcatalog(){
 this.data.isPreview=false;
 
   }
+ */
 
+  logout() {
+this.data.RegiserUser=new User();
+console.log(this.data.RegiserUser);
+
+  }
 
   ngOnInit() {
   }

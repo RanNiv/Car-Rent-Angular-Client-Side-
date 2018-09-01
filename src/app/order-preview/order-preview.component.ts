@@ -18,11 +18,11 @@ localRoute:string;
 isPreview:boolean=false;;
 
   constructor(private data:DataService,private myActivatedRoute: ActivatedRoute) {
-
+    console.log("Test ActivatedRoute");
 
   this.myActivatedRoute.params.subscribe(x=>{this.localId=x.id});
-
-this.data.getOrders(this.localId);
+  console.log(this.localId);
+this.data.getUserOrder(this.localId);
 
 
    }
