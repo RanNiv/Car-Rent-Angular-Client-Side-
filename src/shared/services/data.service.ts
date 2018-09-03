@@ -69,20 +69,31 @@ this.currentCarOrder=new Car();
   }
 
 CarsCollection:Array<Car>;
+filterCarCollection:Array<Car>;
 CarsTypesCollection:Array<CarType>=new Array<CarType>();
 usersList:Array<User>;
 
 getCarCatalog(): void /*Observable<car>*/ {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x;
-      let carTypes=  new Set(this.CarsCollection.map(m=>`${m.Manufacturer}-*-${m.Model}`));
-
-      console.log(carTypes);
-      carTypes.forEach(x=>this.CarsTypesCollection.push(new CarType(x,true)));
-
-      console.log(this.CarsTypesCollection);
+      this.filterCarCollection=this.CarsCollection;
+      
 
     });
 } 
+
+
+getCarsTypes(): void /*Observable<car>*/ {
+  this.http.get(`${this.link}/GetAllCars`).subscribe((x:Car[])=>{
+
+  let carTypes=new Set(x.map(m=>`${m.Manufacturer}-*-${m.Model}`));
+  carTypes.forEach(x=>this.CarsTypesCollection.push(new CarType(x,true)));
+  this.getCarCatalog();
+  });
+}
+ 
+
+
+
 
 updateCarsForRent():void {
   console.log("-----")
@@ -116,9 +127,9 @@ alert (errorMessage);
 
   }
 
-addUOrder(order:Order,callback:(bool:boolean)=>void): void {
-  this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).subscribe(()=>{()=>{console.log("Post")}; callback(true);},
-  ()=>{callback(false)});
+addUOrder(order:Order): void {
+  this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).
+  subscribe(()=>alert("Order Received"),()=>alert("Problem with the Order Please try again"));
 }
 
 

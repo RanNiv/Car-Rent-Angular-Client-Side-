@@ -1,11 +1,11 @@
 
 
     <div  *ngIf="!data.isPreview" class="panel panel-default" role="button">
-        <a routerLink="/carpreview/{{car.CarID}}" (click)="displaypreview()" > Preview</a>
-        <h2 class="panel-heading">{{car.Manufacturer}}</h2>
+        <a routerLink="/carpreview/{{car.CarID}}" (click)="displaypreview()" class='preview' > Preview</a>
+        <h3 class="panel-heading">{{car?.Manufacturer}}</h3>
         <div class="panel-body">
-            <h4 class="panel-heading">{{car.Model}}</h4>
-            <img   [src]="car.Picture"  alt="Responsive image">
+            <h3 class="panel-heading">{{car?.Model}}</h3>
+            <img   [src]="car?.Picture"  alt="Responsive image">
         </div>
       </div>
 
@@ -15,11 +15,7 @@
 
 <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
       <div  *ngIf="data.isPreview" >
-        
-
-          
           <div class="row">
-            
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <img   class='displayimage'  [src]="data.currentCarOrder.Picture"  alt="Responsive image">
                 <br/>

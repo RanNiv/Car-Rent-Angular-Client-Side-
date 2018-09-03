@@ -12,9 +12,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
 
-  console.log("submit");
-  console.log(this.data.userLogin);
   this.data.CheckCredentials(this.data.userLogin);
+  
 
   }
 

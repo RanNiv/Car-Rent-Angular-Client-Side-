@@ -14,15 +14,9 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
-/*   resetcatalog(){
-this.data.isPreview=false;
-
-  }
- */
-
   logout() {
 this.data.RegiserUser=new User();
+
 console.log(this.data.RegiserUser);
 
   }

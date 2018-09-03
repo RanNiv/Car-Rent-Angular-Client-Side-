@@ -23,12 +23,13 @@ export class OrderpageComponent implements OnInit {
     order.OrderReturnDate=this.data.currentCarOrderEndDate;
     order.UserID=this.data.RegiserUser.UserID;
     order.RegisterNumber=this.data.currentCarOrder.RegisterNumber;
+    
 
     
 
-  this.data.addUOrder(order,()=>{console.log("call back post order");
+  this.data.addUOrder(order);
 
-  });
+
 }
 
 
