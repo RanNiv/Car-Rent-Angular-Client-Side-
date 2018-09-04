@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let data of data.usersList" > 
+      <tr *ngFor="let data of data.AgencyInfo.usersList" > 
       <td><button class="btn btn-success" (click)="updateUser(data.idNum)" >Update</button></td>
      
       <td> {{data.IdNum}} </td>

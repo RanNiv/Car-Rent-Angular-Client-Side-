@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
 
-  this.data.CheckCredentials(this.data.userLogin);
+  this.data.CheckCredentials(this.data.AgencyInfo.userLogin);
   
 
   }

@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private data:DataService) { 
 
-console.log(data.RegiserUser);
+console.log(data.AgencyInfo.RegisterUser);
 
   }
 
@@ -24,11 +24,10 @@ console.log(data.RegiserUser);
  
   onSubmit() { 
     this.submitted = true;
-    console.log(this.data.RegiserUser);
+    this.data.AgencyInfo.RegisterUser.Role="Customer";
+    console.log(this.data.AgencyInfo.RegisterUser);
 
-    this.data.addUser(this.data.RegiserUser
-    //   ,()=>{console.log("call back post user")}
-    );
+   this.data.addUser(this.data.AgencyInfo.RegisterUser);
   
   
   }

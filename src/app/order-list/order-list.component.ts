@@ -10,7 +10,7 @@ export class OrderListComponent implements OnInit {
 
   constructor(private data:DataService) {
 
-    this.data.getOrders(this.data.RegiserUser.UserID);
+    this.data.getOrders(this.data.AgencyInfo.RegisterUser.UserID);
 
 
    }

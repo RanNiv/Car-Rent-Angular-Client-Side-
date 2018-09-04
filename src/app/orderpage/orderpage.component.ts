@@ -19,10 +19,10 @@ export class OrderpageComponent implements OnInit {
   postorder () {
 
     let order:Order=new Order();
-    order.OrderStartDate=this.data.currentCarOrderStartDate;
-    order.OrderReturnDate=this.data.currentCarOrderEndDate;
-    order.UserID=this.data.RegiserUser.UserID;
-    order.RegisterNumber=this.data.currentCarOrder.RegisterNumber;
+    order.OrderStartDate=this.data.AgencyInfo.currentCarOrderStartDate;
+    order.OrderReturnDate=this.data.AgencyInfo.currentCarOrderEndDate;
+    order.UserID=this.data.AgencyInfo.RegisterUser.UserID;
+    order.RegisterNumber=this.data.AgencyInfo.currentCarOrder.RegisterNumber;
     
 
     

@@ -7,6 +7,7 @@ import { Order } from '../models/Order';
 import { UserLogin } from '../models/UserLogin';
 import { Observable } from '../../../node_modules/rxjs';
 import { CarType } from '../models/CarType';
+import { CarAgency } from '../models/CarAgency';
 
 
 
@@ -16,28 +17,12 @@ import { CarType } from '../models/CarType';
 })
 export class DataService {
 
-
-UserName:string="Guest"; //display in Header Component
-
-
-
-userLogin:UserLogin;
-
-
-RegiserUser:User;
-currentCarOrder:Car;
-
-currentCarOrderPrice:number=0;
-currentCarOrderStartDate:Date;
-currentCarOrderEndDate:Date;
-currentDay:Date;
-
-
+AgencyInfo:CarAgency=new CarAgency();
 ErrorMessage:string="You Enter incomplete or Wrong Data\n Please try again";
 OrderStaus:IValidState= {
-  message:"order status",
-   class:"regular",
-   btnclass:"btn btn-primary disabled"
+message:"order status",
+class:"regular",
+btnclass:"btn btn-primary disabled"
 }
 
 
@@ -46,6 +31,7 @@ id:number=1;
 isPreview:boolean;
 imagepath:string="http://localhost:57445/api/carcatalog/GetImage/";
 link:string="http://localhost:57445/api/carcatalog";
+currentDay:Date;
 
 
 
@@ -54,28 +40,23 @@ link:string="http://localhost:57445/api/carcatalog";
 
 
   constructor(private http:HttpClient) { 
-   
-     this.RegiserUser=new User();//for register form ngmodel stater
-    
-     this.userLogin=new UserLogin();
-    this.currentDay=new Date();
-    this.currentDay.setHours(0,0,0,0);
-
-
-this.currentCarOrder=new Car();
-    this.isPreview=false;
-    this.getCarCatalog();
+     this.currentDay=new Date();
+     this.currentDay.setHours(0,0,0,0);
+      this.AgencyInfo.RegisterUser=new User();//for register form ngmodel stater 
+      this.AgencyInfo.userLogin=new UserLogin();
+      this.AgencyInfo.currentDay=new Date();
+      this.AgencyInfo.currentDay.setHours(0,0,0,0);
+      this.AgencyInfo.currentCarOrder=new Car();
+      this.isPreview=false;
+      this.getCarCatalog();
 
   }
 
-CarsCollection:Array<Car>;
-filterCarCollection:Array<Car>;
-CarsTypesCollection:Array<CarType>=new Array<CarType>();
-usersList:Array<User>;
+
 
 getCarCatalog(): void /*Observable<car>*/ {
-     this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.CarsCollection=x;
-      this.filterCarCollection=this.CarsCollection;
+     this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.AgencyInfo.CarsCollection=x;
+      this.AgencyInfo.filterCarCollection=this.AgencyInfo.CarsCollection;
       
 
     });
@@ -86,7 +67,7 @@ getCarsTypes(): void /*Observable<car>*/ {
   this.http.get(`${this.link}/GetAllCars`).subscribe((x:Car[])=>{
 
   let carTypes=new Set(x.map(m=>`${m.Manufacturer}-*-${m.Model}`));
-  carTypes.forEach(x=>this.CarsTypesCollection.push(new CarType(x,true)));
+  carTypes.forEach(x=>this.AgencyInfo.CarsTypesCollection.push(new CarType(x,true)));
   this.getCarCatalog();
   });
 }
@@ -97,19 +78,22 @@ getCarsTypes(): void /*Observable<car>*/ {
 
 updateCarsForRent():void {
   console.log("-----")
-console.log(this.CarsTypesCollection);
+console.log(this.AgencyInfo.CarsTypesCollection);
 
   let url = `${this.link}/updatecarsforrent`;
-   this.http.put(url, JSON.stringify(this.CarsTypesCollection), { headers: {"content-type": "application/json" }})
+   this.http.put(url, JSON.stringify(this.AgencyInfo.CarsTypesCollection), { headers: {"content-type": "application/json" }})
   .subscribe((x)=>console.log(x));
 
 }
 
 addUser(user:User): void {
-  this.http.post<boolean>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((response)=>{
+  console.log(user);
+  this.http.post<User>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((x:User)=>{
     
-    alert ("You Log In The System");
-    location.reload();
+    this.AgencyInfo.RegisterUser=x
+    console.log("from server");
+    console.log(x);
+
   },
   
   (errors)=>{
@@ -130,6 +114,8 @@ alert (errorMessage);
 addUOrder(order:Order): void {
   this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).
   subscribe(()=>alert("Order Received"),()=>alert("Problem with the Order Please try again"));
+  
+
 }
 
 
@@ -157,20 +143,20 @@ deleteOrder(orderid:number) {
 
 
 getCUsers(): void /*Observable<car>*/ {
-  this.http.get(`${this.link}/GetUsers`).subscribe((x:User[])=>{this.usersList=x;});
+  this.http.get(`${this.link}/GetUsers`).subscribe((x:User[])=>{this.AgencyInfo.usersList=x;});
 } 
 
 
 
 
 calculatePrice() {
-  this.currentCarOrderStartDate=new Date(this.currentCarOrderStartDate);
-  this.currentCarOrderEndDate=new Date(this.currentCarOrderEndDate);
+  this.AgencyInfo.currentCarOrderStartDate=new Date(this.AgencyInfo.currentCarOrderStartDate);
+  this.AgencyInfo.currentCarOrderEndDate=new Date(this.AgencyInfo.currentCarOrderEndDate);
 
-let isDatesCorrect:boolean=this.currentCarOrderStartDate!=undefined && this.currentCarOrderEndDate!=undefined
-&& this.currentCarOrderEndDate>=this.currentCarOrderStartDate
-&& this.currentCarOrderStartDate.getTime()>=this.currentDay.getTime()
-&& this.currentCarOrderEndDate.getTime()>=this.currentDay.getTime()
+let isDatesCorrect:boolean=this.AgencyInfo.currentCarOrderStartDate!=undefined && this.AgencyInfo.currentCarOrderEndDate!=undefined
+&& this.AgencyInfo.currentCarOrderEndDate>=this.AgencyInfo.currentCarOrderStartDate
+&& this.AgencyInfo.currentCarOrderStartDate.getTime()>=this.currentDay.getTime()
+&& this.AgencyInfo.currentCarOrderEndDate.getTime()>=this.currentDay.getTime()
 let RentDays:number=1;
 
 if(!isDatesCorrect){
@@ -184,10 +170,10 @@ else {
   this.OrderStaus.class="regular";
   this.OrderStaus.btnclass="btn btn-primary active"
   
-  let timeDiff = Math.abs(this.currentCarOrderStartDate.getTime() - this.currentCarOrderEndDate.getTime());
+  let timeDiff = Math.abs(this.AgencyInfo.currentCarOrderStartDate.getTime() - this.AgencyInfo.currentCarOrderEndDate.getTime());
   let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-  this.currentCarOrderPrice=this.currentCarOrder.PricePerDay*(diffDays+1);
+  this.AgencyInfo.currentCarOrderPrice=this.AgencyInfo.currentCarOrder.PricePerDay*(diffDays+1);
 }
 
 }
@@ -199,11 +185,10 @@ CheckCredentials(user:UserLogin): void {
   let apiURL = `${basicUrl}?name=${user.name}&&password=${user.password}`;
 
 
-    this.http.get(apiURL).subscribe((x:User)=>{this.RegiserUser=x;});
+    this.http.get(apiURL).subscribe((x:User)=>{this.AgencyInfo.RegisterUser=x;});
 }
 
-currentOrders:Array<Order>;
-currentUserOrderDisplay:Order;
+
 
 
 getOrders (userid:number) {
@@ -211,9 +196,9 @@ console.log("from getOrders");
 console.log(userid);
   let basicUrl=`${this.link}/GetOrders`;
   let apiURL = `${basicUrl}?id=${userid}`;
-    this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.currentOrders=x;
+    this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.AgencyInfo.currentOrders=x;
     if(userid!=0)
-    this.currentUserOrderDisplay=this.currentOrders.find(x=>x.OrderID==userid);
+    this.AgencyInfo.currentUserOrderDisplay=this.AgencyInfo.currentOrders.find(x=>x.OrderID==userid);
     });
 }
 
@@ -223,7 +208,7 @@ getUserOrder (orderid:number) {
   console.log(orderid);
     let basicUrl=`${this.link}/GetUserOrder`;
     let apiURL = `${basicUrl}?id=${orderid}`;
-      this.http.get(apiURL).subscribe((x:Order)=>{ this.currentUserOrderDisplay=x;});
+      this.http.get(apiURL).subscribe((x:Order)=>{ this.AgencyInfo.currentUserOrderDisplay=x;});
   }
 
 
@@ -237,7 +222,7 @@ Returncar(regiserNumber:string) {
   let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
 console.log(url);
 return this.http
-   .put(url, JSON.stringify(this.RegiserUser), { headers: {"content-type": "application/json" }})
+   .put(url, JSON.stringify(this.AgencyInfo.RegisterUser), { headers: {"content-type": "application/json" }})
    .subscribe((response)=>{console.log(response)});
 
 }

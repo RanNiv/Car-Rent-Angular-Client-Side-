@@ -10,10 +10,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.currentCarOrder?.Manufacturer}}</td></tr>
-                  <tr> <td><span>Model:&nbsp;</span>{{data.currentCarOrder?.Model}}</td></tr>
-                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.currentCarOrder?.PricePerDay}}</td></tr>
-                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.currentCarOrder?.PricePerDayLate}}</td></tr>
+                  <tr> <td><span>Manufacturer:&nbsp;</span>  {{data.AgencyInfo.currentCarOrder?.Manufacturer}}</td></tr>
+                  <tr> <td><span>Model:&nbsp;</span>{{data.AgencyInfo.currentCarOrder?.Model}}</td></tr>
+                  <tr> <td><span>Price Per Day:&nbsp;</span>{{data.AgencyInfo.currentCarOrder?.PricePerDay}}</td></tr>
+                  <tr> <td><span>Price Per Day Late:&nbsp;</span>{{data.AgencyInfo.currentCarOrder?.PricePerDayLate}}</td></tr>
                  
                 </tbody>
               </table>
@@ -45,7 +45,7 @@
                     <div class="jumbotron">
                         <div class="container">
                           <h4>Order Price</h4>
-                          <div>{{data.currentCarOrderPrice| currency:'ILS'}}</div>
+                          <div>{{data.AgencyInfo.currentCarOrderPrice| currency:'ILS'}}</div>
                         </div>
                       </div>
                 </div>
@@ -54,11 +54,11 @@
                 <form>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Rent Start Date</label>
-                      <input type="date" class="form-control" [(ngModel)]="data.currentCarOrderStartDate" name="startdate" >
+                      <input type="date" class="form-control" [(ngModel)]="data.AgencyInfo.currentCarOrderStartDate" name="startdate" >
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput2">Rent End Date</label> 
-                      <input type="date" class="form-control" [(ngModel)]="data.currentCarOrderEndDate" name="enddate" >
+                      <input type="date" class="form-control" [(ngModel)]="data.AgencyInfo.currentCarOrderEndDate" name="enddate" >
                     </div>
 
                     

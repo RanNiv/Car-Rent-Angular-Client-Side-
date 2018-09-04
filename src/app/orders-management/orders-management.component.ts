@@ -13,7 +13,7 @@ export class OrdersManagementComponent implements OnInit {
 
     console.log("OrdersManagementComponent");
     this.data.getOrders(0);
-    console.log(this.data.currentOrders);
+    console.log(this.data.AgencyInfo.currentOrders);
   }
 
 

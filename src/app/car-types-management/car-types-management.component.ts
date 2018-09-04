@@ -9,7 +9,7 @@ import { DataService } from '../../shared/services/data.service';
 export class CarTypesManagementComponent implements OnInit {
 
   constructor(private data:DataService) {
-this.data.CarsTypesCollection=[];
+this.data.AgencyInfo.CarsTypesCollection=[];
  this.data.getCarsTypes();
 
 

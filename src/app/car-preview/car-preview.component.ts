@@ -24,7 +24,7 @@ export class CarPreviewComponent implements OnInit {
    displaypreview () {
 
    this.data.isPreview=true;
-   this.data.currentCarOrder=this.car;
+   this.data.AgencyInfo.currentCarOrder=this.car;
 
    }
 

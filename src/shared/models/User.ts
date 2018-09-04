@@ -11,7 +11,7 @@
         Role: string="customer";
 
         constructor () {
-        this.UserID=1; //for put test
+       
         this.FullName="Guest";
         this.Role="Guest";
 

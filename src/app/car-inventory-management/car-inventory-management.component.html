@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of data.CarsCollection">
+      <tr *ngFor="let data of data.AgencyInfo.CarsCollection">
         <td><button class="btn btn-success" (click)="updateCarInfo($event,data)" >Update</button></td>
         <td>{{data.Manufacturer}}</td>
         <td>{{data.Model}}</td>

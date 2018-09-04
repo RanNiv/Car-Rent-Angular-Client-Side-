@@ -4,15 +4,15 @@
 <div *ngIf="!isPreview" class="panel panel-info">
     <div class="panel-heading">
     
- <h3> {{data.currentUserOrderDisplay?.Manufacturer}}</h3>
- <h4>{{data.currentUserOrderDisplay?.Model}}</h4>
+ <h3> {{data.AgencyInfo.currentUserOrderDisplay?.Manufacturer}}</h3>
+ <h4>{{data.AgencyInfo.currentUserOrderDisplay?.Model}}</h4>
 
 
     </div>
     <div class="panel-body">
-      <p class="panel-title"> Start Date: {{data.currentUserOrderDisplay?.OrderStartDate|date: 'dd/MM/yyyy'}}</p>
-      <p class="panel-title"> Expected Return Date: {{data.currentUserOrderDisplay?.OrderReturnDate|date: 'dd/MM/yyyy'}}</p>
-      <p class="panel-title"> Actual Return Date: {{data.currentUserOrderDisplay?.Actualreturndate|date: 'dd/MM/yyyy'}}</p>
+      <p class="panel-title"> Start Date: {{data.AgencyInfo.currentUserOrderDisplay?.OrderStartDate|date: 'dd/MM/yyyy'}}</p>
+      <p class="panel-title"> Expected Return Date: {{data.AgencyInfo.currentUserOrderDisplay?.OrderReturnDate|date: 'dd/MM/yyyy'}}</p>
+      <p class="panel-title"> Actual Return Date: {{data.AgencyInfo.currentUserOrderDisplay?.Actualreturndate|date: 'dd/MM/yyyy'}}</p>
      
     </div>
   </div>

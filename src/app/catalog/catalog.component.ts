@@ -16,7 +16,7 @@ filterCarCollection:Array<Car>;
 
 constructor(private data:DataService) { 
 this.data.isPreview=false;
- this.data.filterCarCollection=this.data.CarsCollection;
+ this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection;
 
     this.optionList.push("Show All Results");
     this.optionList.push("Gear");
@@ -28,8 +28,8 @@ this.data.isPreview=false;
 
     console.log("___________________________________________");
     console.log(this.optionList);
-    console.log(this.data.CarsCollection);
-    console.log(this.data.filterCarCollection);
+    console.log(this.data.AgencyInfo.CarsCollection);
+    console.log(this.data.AgencyInfo.filterCarCollection);
     console.log("___________________________________________");
 
     
@@ -59,28 +59,28 @@ search () {
 switch (this.FilterSearchOption) {
 case "Gear":
 this.searchValue="Gear";
-this.data.filterCarCollection=this.data.CarsCollection.filter(x=>x.Gear==true);
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection.filter(x=>x.Gear==true);
 break;
 
 case "Year":
 if (parseInt(this.searchValue)!=NaN)
-this.data.filterCarCollection=this.data.CarsCollection.filter(x=>x.Year==parseInt(this.searchValue));
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection.filter(x=>x.Year==parseInt(this.searchValue));
 break;
 
 case "Manufacturer":
-this.data.filterCarCollection=this.data.CarsCollection.filter(x=>x.Manufacturer==this.searchValue);
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection.filter(x=>x.Manufacturer==this.searchValue);
 break;
 
 case "Model":
-this.data.filterCarCollection=this.data.CarsCollection.filter(x=>x.Model==this.searchValue);
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection.filter(x=>x.Model==this.searchValue);
 break;
 
 case "Show All Results":
-this.data.filterCarCollection=this.data.CarsCollection;
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection;
 break;
 
 case "Free Text":
-this.data.filterCarCollection=this.data.CarsCollection.filter(x=>x.Manufacturer==this.searchValue||
+this.data.AgencyInfo.filterCarCollection=this.data.AgencyInfo.CarsCollection.filter(x=>x.Manufacturer==this.searchValue||
   x.Model==this.searchValue||x.Year==parseInt(this.searchValue)||(x.Gear==true && this.FilterSearchOption=="Gear"));
 break;
 

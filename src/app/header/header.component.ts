@@ -15,9 +15,9 @@ export class HeaderComponent implements OnInit {
 
 
   logout() {
-this.data.RegiserUser=new User();
+this.data.AgencyInfo.RegisterUser=new User();
 
-console.log(this.data.RegiserUser);
+console.log(this.data.AgencyInfo.RegisterUser);
 
   }
 
