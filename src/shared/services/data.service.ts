@@ -5,7 +5,6 @@ import { User } from '../models/User';
 import { IValidState } from '../models/ivalidstate';
 import { Order } from '../models/Order';
 import { UserLogin } from '../models/UserLogin';
-import { Observable } from '../../../node_modules/rxjs';
 import { CarType } from '../models/CarType';
 import { CarAgency } from '../models/CarAgency';
 
@@ -33,11 +32,6 @@ link:string="http://localhost:57445/api/carcatalog";
 currentDay:Date;
 returnedCarPrice:number;
 
-
-
-
-
-
   constructor(private http:HttpClient) { 
      this.currentDay=new Date();
      this.currentDay.setHours(0,0,0,0);
@@ -50,8 +44,6 @@ returnedCarPrice:number;
       this.getCarCatalog();
 
   }
-
-
 
 getCarCatalog(): void /*Observable<car>*/ {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.AgencyInfo.CarsCollection=x;
