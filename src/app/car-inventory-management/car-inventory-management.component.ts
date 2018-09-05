@@ -7,7 +7,7 @@ import { Car } from '../../shared/models/car';
   templateUrl: './car-inventory-management.component.html',
   styleUrls: ['./car-inventory-management.component.css']
 })
-export class CarInventoryManagementComponent implements OnInit {
+export class CarInventoryManagementComponent  {
 
   constructor(private data:DataService) {
 
@@ -23,9 +23,5 @@ export class CarInventoryManagementComponent implements OnInit {
    location.reload();
 
    }
-
-
-  ngOnInit() {
-  }
 
 }

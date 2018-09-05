@@ -9,33 +9,20 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent  {
 
   constructor(private data:DataService) { 
 
-console.log(data.AgencyInfo.RegisterUser);
-
   }
-
-
-
-
   submitted = false;
  
   onSubmit() { 
     this.submitted = true;
     this.data.AgencyInfo.RegisterUser.Role="Customer";
-    console.log(this.data.AgencyInfo.RegisterUser);
-
    this.data.addUser(this.data.AgencyInfo.RegisterUser);
   
   
   }
 
- 
-
-
-  ngOnInit() {
-  }
 
 }

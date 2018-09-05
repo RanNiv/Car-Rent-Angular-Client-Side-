@@ -7,30 +7,23 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './users-management.component.html',
   styleUrls: ['./users-management.component.css']
 })
-export class UsersManagementComponent implements OnInit {
+export class UsersManagementComponent  {
 
-  constructor(private data:DataService,) { 
+constructor(private data:DataService,) { 
 this.data.getCUsers();
-  }
+}
 
 updateUser () {
-
-
 }
 
 
 deleteUser (event,id:number) {
 
-console.log(id);
 this.data.deleteUser(id);
 location.reload();
 
 
 }
-  
 
-  ngOnInit() {
-    
-  }
 
 }

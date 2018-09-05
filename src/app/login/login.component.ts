@@ -6,7 +6,7 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
 
   constructor(private data:DataService) { }
 
@@ -15,21 +15,6 @@ export class LoginComponent implements OnInit {
   this.data.CheckCredentials(this.data.AgencyInfo.userLogin);
   
 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ngOnInit() {
   }
 
 }

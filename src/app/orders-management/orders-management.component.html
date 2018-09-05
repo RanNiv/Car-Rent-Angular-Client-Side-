@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of data.currentOrders">
+        <tr *ngFor="let data of data.AgencyInfo.currentOrders">
           <td><button class="btn btn-success" (click)="updateOrderinfo($event,data)" >Update</button></td>
           <td>{{data.RegisterNumber}}</td>
           <td>{{data.Manufacturer}}</td>

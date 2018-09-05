@@ -17,16 +17,11 @@ export class OrderpageComponent implements OnInit {
 
 
   postorder () {
-
     let order:Order=new Order();
     order.OrderStartDate=this.data.AgencyInfo.currentCarOrderStartDate;
     order.OrderReturnDate=this.data.AgencyInfo.currentCarOrderEndDate;
     order.UserID=this.data.AgencyInfo.RegisterUser.UserID;
     order.RegisterNumber=this.data.AgencyInfo.currentCarOrder.RegisterNumber;
-    
-
-    
-
   this.data.addUOrder(order);
 
 
@@ -35,8 +30,7 @@ export class OrderpageComponent implements OnInit {
 
 
   backtolist () {
-    //prevent this part overflow the html part of the catalog 
-    //Try to move to service
+
   this.data.isPreview=false;
  }
 

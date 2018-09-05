@@ -1,14 +1,11 @@
 
 <div class="container">
-  
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    
     <div class="jumbotron">
       <div class="container">
         <h1>Rent Cost</h1>
-        
         <p>
-         Rent Price
+        {{data.returnedCarPrice | currency:'ILS'}}
         </p>
       </div>
     </div>
@@ -25,12 +22,5 @@
        <button type="button" class="btn btn-large btn-block btn-primary"   name="name" (click)="returnCar()">Return Car</button>
         </div>
       </form>
-
       </div>
-
-    
-
-  
-
-
 </div>

@@ -7,19 +7,11 @@ import { ImageService } from '../../shared/services/image.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-imagepath:string="";
-imagepath2:string="";
-
-  constructor(private imagedata :ImageService) { 
-/* this.imagepath="http://localhost:57445/api/carcatalog/GetImage/0"; */
-/* this.imagepath2="http://localhost:57445/api/carcatalog/GetImage/1"; */
-
+  constructor(private imagedata :ImageService) {
 
   }
 
-  ngOnInit() {
-  }
 
 }

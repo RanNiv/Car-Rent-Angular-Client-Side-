@@ -19,25 +19,14 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <img   class='displayimage'  [src]="data.AgencyInfo.currentCarOrder.Picture"  alt="Responsive image">
                 <br/>
-              <!--   (click)="displaypreview()" after click reference error  -->
-
-
-
               <div   class="btn-group-vertical">
                   <a  *ngIf="data.AgencyInfo.RegisterUser.Role!='Guest'" routerLink="/order/{{data.AgencyInfo.currentCarOrder.CarID}}"  role="button" class='btn btn-primary' >Order and price</a>
                   <a *ngIf="data.isPreview" routerLink="/catalog" (click)="backtolist()" class="btn btn-info">Back to Cars list</a>
                  
                 </div>
-               
-             
-               <!--   <button class='btn btn-info'>Order Car</button> -->
                  <br>
-                 
             </div>
-            
-            
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-              
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -52,12 +41,10 @@
                   <tr> <td><span>Year:&nbsp;</span>{{data.AgencyInfo.currentCarOrder.Year}}</td></tr>
                   <tr> <td><span>Gear:&nbsp;</span>{{data.AgencyInfo.currentCarOrder.Gear}}</td></tr>
                   <tr> <td><span>Branch Location:&nbsp;</span>{{data.AgencyInfo.currentCarOrder.BranchLocation}}</td></tr>
-   
                 </tbody>
               </table>
             </div>
           </div>
-
 </div>
 </div>
 </div>

@@ -6,16 +6,11 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit {
-
+export class OrderListComponent  {
   constructor(private data:DataService) {
-
     this.data.getOrders(this.data.AgencyInfo.RegisterUser.UserID);
-
-
    }
 
-  ngOnInit() {
-  }
+
 
 }

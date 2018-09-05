@@ -40,13 +40,10 @@ const appRoutes: Routes = [
   { path: 'carsinventory', component: CarInventoryManagementComponent },
   { path: 'carstypes', component:CarTypesManagementComponent },
   { path: 'carsorderslist', component:OrdersManagementComponent },
-  //users-management
-  //carsinventory
-   {path: '', redirectTo: '/home', pathMatch: 'full'}
-  ,
- 
 
-  /* { path: '**', component: PagenotfoundComponent } */
+   {path: '', redirectTo: '/home', pathMatch: 'full'}
+  
+
 
 ];
 

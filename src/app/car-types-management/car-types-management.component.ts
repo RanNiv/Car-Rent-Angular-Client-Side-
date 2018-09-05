@@ -6,9 +6,9 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './car-types-management.component.html',
   styleUrls: ['./car-types-management.component.css']
 })
-export class CarTypesManagementComponent implements OnInit {
+export class CarTypesManagementComponent  {
 
-  constructor(private data:DataService) {
+constructor(private data:DataService) {
 this.data.AgencyInfo.CarsTypesCollection=[];
  this.data.getCarsTypes();
 
@@ -20,7 +20,5 @@ this.data.AgencyInfo.CarsTypesCollection=[];
 
   }
 
-  ngOnInit() {
-  }
 
 }

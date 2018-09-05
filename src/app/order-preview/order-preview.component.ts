@@ -8,7 +8,7 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './order-preview.component.html',
   styleUrls: ['./order-preview.component.css']
 })
-export class OrderPreviewComponent implements OnInit {
+export class OrderPreviewComponent  {
 
 order:Order;
 
@@ -18,23 +18,12 @@ localRoute:string;
 isPreview:boolean=false;;
 
   constructor(private data:DataService,private myActivatedRoute: ActivatedRoute) {
-    console.log("Test ActivatedRoute");
-
   this.myActivatedRoute.params.subscribe(x=>{this.localId=x.id});
-  console.log(this.localId);
-this.data.getUserOrder(this.localId);
+  this.data.getUserOrder(this.localId);
 
 
    }
 
  
-
-  ngOnInit() {
-
-  //this.order=this.data.currentUserOrders.find(x=>x.OrderID==1);
-
-    /* this.myActivatedRoute.params.subscribe(x=>{this.localId=x.id});
-    console.log(`ngOnInit: ${this.localId}`); */
-  }
 
 }

@@ -6,22 +6,18 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './car-return.component.html',
   styleUrls: ['./car-return.component.css']
 })
-export class CarReturnComponent implements OnInit {
+export class CarReturnComponent  {
 
   registerNumber:string;
+  rentPrice:number;
   returnCar(){
-  console.log("step1");
    this.data.Returncar(this.registerNumber);
-
-
   }
 
 
   constructor(private data:DataService) {
-
    }
 
-  ngOnInit() {
-  }
+  
 
 }

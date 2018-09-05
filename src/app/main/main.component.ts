@@ -5,13 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
   constructor() { }
-  imagepath:string="app/shared/content/logo1.jpg";
+  
 
-
-  ngOnInit() {
-  }
 
 }

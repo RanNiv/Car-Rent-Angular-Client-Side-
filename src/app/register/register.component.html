@@ -21,16 +21,6 @@
 
           <label for="birthdateid">Birth Date</label>
           <input type="date"  [(ngModel)]="data.AgencyInfo.RegisterUser.BirthDate"  class="form-control" id="birthdateid" name="birthdate" >
-    
-
-        
-
-  
-       
-          <!-- <label class="radio-inline"><input type="radio"  [(ngModel)]="data.RegisterUser.Gender"  name="gender" required >Male</label>
-          <label class="radio-inline"><input type="radio" [(ngModel)]="data.RegisterUser.Gender"   name="gender">Female</label>
-          <br/> -->
-
 
           <label>Gender</label>
           <div class="form-group">
@@ -39,25 +29,15 @@
                       <input type="radio" name="Gender" value="1" [(ngModel)]="data.AgencyInfo.RegisterUser.Gender" required >
                       Male  &nbsp;
                   </label>
-                 
-  
                   <label>
                       <input type="radio" name="Gender" value="2" [(ngModel)]="data.AgencyInfo.RegisterUser.Gender">
                     Female
                   </label>
-              
           </div>
-     
-
- 
           <label for="emailid">Email</label>
           <input type="email" [(ngModel)]="data.AgencyInfo.RegisterUser.Email" class="form-control" id="emailid" placeholder="Email" name="email" required>
-          
-       
           <label for="passwordid">Password</label>
           <input type="password"  [(ngModel)]="data.AgencyInfo.RegisterUser.Password" class="form-control" id="passwordid" name="password" required>
-    
-              <!-- <button type="submit" [disabled]="!ngForm.valid">Submit</button> -->
               <button type="submit"  [disabled]="!registerForm.form.valid">Submit</button>
               </div>
   </form>

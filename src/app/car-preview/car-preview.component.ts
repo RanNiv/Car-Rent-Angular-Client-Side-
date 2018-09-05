@@ -7,19 +7,11 @@ import { Car } from '../../shared/models/car';
   templateUrl: './car-preview.component.html',
   styleUrls: ['./car-preview.component.css']
 })
-export class CarPreviewComponent implements OnInit {
-
-
-/*  @Input() catalogPath:string; */
+export class CarPreviewComponent  {
 
  @Input() car: Car;
-
-
   constructor(private data:DataService) {
-   // this.data.imagepath=`${this.data.imagepath}${this.data.id}`;
   }
-
-
 
    displaypreview () {
 
@@ -28,17 +20,9 @@ export class CarPreviewComponent implements OnInit {
 
    }
 
-
-
    backtolist () {
-      //prevent this part overflow the html part of the catalog 
-      //Try to move to service
     this.data.isPreview=false;
    }
 
-
-
-  ngOnInit() {
-  }
 
 }

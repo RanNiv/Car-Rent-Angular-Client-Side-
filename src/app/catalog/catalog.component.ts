@@ -7,7 +7,7 @@ import { Car } from '../../shared/models/car';
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent  {
 
 optionList:Array<string>=new Array<string>();
 FilterSearchOption:string;
@@ -25,12 +25,6 @@ this.data.isPreview=false;
     this.optionList.push("Model");
     this.optionList.push("Free Text");
 
-
-    console.log("___________________________________________");
-    console.log(this.optionList);
-    console.log(this.data.AgencyInfo.CarsCollection);
-    console.log(this.data.AgencyInfo.filterCarCollection);
-    console.log("___________________________________________");
 
     
 
@@ -91,15 +85,6 @@ break;
   }
 
 
- 
 
-  changeid () {
-
-
-  }
-
-
-  ngOnInit() {
-  }
 
 }

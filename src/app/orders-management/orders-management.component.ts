@@ -7,16 +7,12 @@ import { Order } from '../../shared/models/Order';
   templateUrl: './orders-management.component.html',
   styleUrls: ['./orders-management.component.css']
 })
-export class OrdersManagementComponent implements OnInit {
+export class OrdersManagementComponent  {
 
   constructor(private data:DataService) { 
 
-    console.log("OrdersManagementComponent");
     this.data.getOrders(0);
-    console.log(this.data.AgencyInfo.currentOrders);
   }
-
-
  
      updateOrderinfo (event,order:Order) {
     this.data.updateOrder(order);
@@ -28,11 +24,5 @@ export class OrdersManagementComponent implements OnInit {
      location.reload();
   
      }
-
-
-
-
-  ngOnInit() {
-  }
 
 }

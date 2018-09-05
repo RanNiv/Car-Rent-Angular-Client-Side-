@@ -7,21 +7,17 @@ import { User } from '../../shared/models/User';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   constructor(private data:DataService) { 
 
   }
 
 
-  logout() {
+logout() {
 this.data.AgencyInfo.RegisterUser=new User();
-
-console.log(this.data.AgencyInfo.RegisterUser);
-
   }
 
-  ngOnInit() {
-  }
+ 
 
 }

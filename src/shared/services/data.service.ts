@@ -27,12 +27,11 @@ btnclass:"btn btn-primary disabled"
 
 
 id:number=1;
-
 isPreview:boolean;
 imagepath:string="http://localhost:57445/api/carcatalog/GetImage/";
 link:string="http://localhost:57445/api/carcatalog";
 currentDay:Date;
-
+returnedCarPrice:number;
 
 
 
@@ -71,28 +70,16 @@ getCarsTypes(): void /*Observable<car>*/ {
   this.getCarCatalog();
   });
 }
- 
-
-
-
 
 updateCarsForRent():void {
-  console.log("-----")
-console.log(this.AgencyInfo.CarsTypesCollection);
-
   let url = `${this.link}/updatecarsforrent`;
    this.http.put(url, JSON.stringify(this.AgencyInfo.CarsTypesCollection), { headers: {"content-type": "application/json" }})
   .subscribe((x)=>console.log(x));
-
 }
 
 addUser(user:User): void {
-  console.log(user);
   this.http.post<User>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((x:User)=>{
-    
     this.AgencyInfo.RegisterUser=x
-    console.log("from server");
-    console.log(x);
 
   },
   
@@ -120,9 +107,6 @@ addUOrder(order:Order): void {
 
 
 updateOrder(order:Order):void {
-console.log("-----")
-console.log(order);
-
   let url = `${this.link}/updateorder`;
    this.http.put(url, JSON.stringify(order), { headers: {"content-type": "application/json" }})
   .subscribe((x)=>console.log(x));
@@ -131,10 +115,7 @@ console.log(order);
 
 
 deleteOrder(orderid:number) {
-  console.log("DELETE");
-
   let url:string=`${this.link}/deleteorder/?orderid=${orderid}`;
-  console.log(url);
   this.http.delete(url).subscribe(res => console.log(res.toString()));
 }
 
@@ -150,9 +131,8 @@ getCUsers(): void /*Observable<car>*/ {
 
 
 calculatePrice() {
-  this.AgencyInfo.currentCarOrderStartDate=new Date(this.AgencyInfo.currentCarOrderStartDate);
-  this.AgencyInfo.currentCarOrderEndDate=new Date(this.AgencyInfo.currentCarOrderEndDate);
-
+ this.AgencyInfo.currentCarOrderStartDate=new Date(this.AgencyInfo.currentCarOrderStartDate);
+this.AgencyInfo.currentCarOrderEndDate=new Date(this.AgencyInfo.currentCarOrderEndDate);
 let isDatesCorrect:boolean=this.AgencyInfo.currentCarOrderStartDate!=undefined && this.AgencyInfo.currentCarOrderEndDate!=undefined
 && this.AgencyInfo.currentCarOrderEndDate>=this.AgencyInfo.currentCarOrderStartDate
 && this.AgencyInfo.currentCarOrderStartDate.getTime()>=this.currentDay.getTime()
@@ -180,20 +160,16 @@ else {
 
 
 CheckCredentials(user:UserLogin): void {
-
   let basicUrl=`${this.link}/GetUserName`;
   let apiURL = `${basicUrl}?name=${user.name}&&password=${user.password}`;
-
-
-    this.http.get(apiURL).subscribe((x:User)=>{this.AgencyInfo.RegisterUser=x;});
+  this.http.get(apiURL).subscribe((x:User)=>{this.AgencyInfo.RegisterUser=x;});
 }
 
 
 
 
 getOrders (userid:number) {
-console.log("from getOrders");
-console.log(userid);
+
   let basicUrl=`${this.link}/GetOrders`;
   let apiURL = `${basicUrl}?id=${userid}`;
     this.http.get(apiURL).subscribe((x:Array<Order>)=>{ this.AgencyInfo.currentOrders=x;
@@ -204,32 +180,26 @@ console.log(userid);
 
 
 getUserOrder (orderid:number) {
-  console.log("from getUserOrder");
-  console.log(orderid);
+
     let basicUrl=`${this.link}/GetUserOrder`;
     let apiURL = `${basicUrl}?id=${orderid}`;
       this.http.get(apiURL).subscribe((x:Order)=>{ this.AgencyInfo.currentUserOrderDisplay=x;});
   }
 
 
+Returncar(regiserNumber:string):void {
 
-
-
-
-Returncar(regiserNumber:string) {
-
-  console.log("step 2");
   let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
-console.log(url);
-return this.http
+ this.http
    .put(url, JSON.stringify(this.AgencyInfo.RegisterUser), { headers: {"content-type": "application/json" }})
-   .subscribe((response)=>{console.log(response)});
+   .subscribe((price:number)=>this.returnedCarPrice=price),
+   ()=>alert("Error");
+   
+   ;
 
 }
 
 updateCarInfo (car:Car) {
-
-  console.log(car);
   let url = `${this.link}/EditCarData?car=${car}`;
   return this.http
   .put(url, JSON.stringify(car), { headers: {"content-type": "application/json" }})
@@ -242,16 +212,12 @@ updateCarInfo (car:Car) {
     console.log("DELETE");
     console.log(id);
     let url:string=`${this.link}/deleteuser/?userid=${id}`;
-    console.log(url);
     this.http.delete(url).subscribe(res => console.log(res.toString()));
   }
 
 
   deleteCar(carid:number) {
-    console.log("DELETE");
-  
     let url:string=`${this.link}/deletecar/?carid=${carid}`;
-    console.log(url);
     this.http.delete(url).subscribe(res => console.log(res.toString()));
   }
 
