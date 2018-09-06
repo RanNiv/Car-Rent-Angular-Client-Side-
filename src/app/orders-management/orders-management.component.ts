@@ -21,7 +21,7 @@ export class OrdersManagementComponent  {
   
      deleteOrder(event,orderid:number){
      this.data.deleteOrder(orderid);
-     location.reload();
+   
   
      }
 

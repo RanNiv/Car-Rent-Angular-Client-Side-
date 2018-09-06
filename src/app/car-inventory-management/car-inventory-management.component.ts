@@ -20,7 +20,7 @@ export class CarInventoryManagementComponent  {
 
    deleteCar(event,carid:number){
    this.data.deleteCar(carid);
-   location.reload();
+   
 
    }
 

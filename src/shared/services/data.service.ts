@@ -32,6 +32,9 @@ link:string="http://localhost:57445/api/carcatalog";
 currentDay:Date;
 returnedCarPrice:number;
 
+
+
+
   constructor(private http:HttpClient) { 
      this.currentDay=new Date();
      this.currentDay.setHours(0,0,0,0);
@@ -44,6 +47,8 @@ returnedCarPrice:number;
       this.getCarCatalog();
 
   }
+
+
 
 getCarCatalog(): void /*Observable<car>*/ {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.AgencyInfo.CarsCollection=x;
@@ -66,19 +71,21 @@ getCarsTypes(): void /*Observable<car>*/ {
 updateCarsForRent():void {
   let url = `${this.link}/updatecarsforrent`;
    this.http.put(url, JSON.stringify(this.AgencyInfo.CarsTypesCollection), { headers: {"content-type": "application/json" }})
-  .subscribe((x)=>console.log(x));
+  .subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
 }
 
-addUser(user:User): void {
-  this.http.post<User>(`${this.link}/adduser`,JSON.stringify(user), { headers: {"content-type": "application/json" }}).subscribe((x:User)=>{
-    this.AgencyInfo.RegisterUser=x
 
+//Register Form 
+//The User will get Error message for every value that not match the ModelState
+addUser(user:User): void {
+  this.http.post<User>(`${this.link}/adduser`,JSON.stringify(user),
+   { headers: {"content-type": "application/json" }}).subscribe((x:User)=>{
+    this.AgencyInfo.RegisterUser=x;
+    alert("Action Succeeded");
   },
   
   (errors)=>{
 let errorMessage:string="";
-console.log(errors.error);
-
 for (let errorText of errors.error )
 errorMessage+=errorText+'\n';
 
@@ -101,21 +108,21 @@ addUOrder(order:Order): void {
 updateOrder(order:Order):void {
   let url = `${this.link}/updateorder`;
    this.http.put(url, JSON.stringify(order), { headers: {"content-type": "application/json" }})
-  .subscribe((x)=>console.log(x));
+  .subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
 
 }
 
 
 deleteOrder(orderid:number) {
   let url:string=`${this.link}/deleteorder/?orderid=${orderid}`;
-  this.http.delete(url).subscribe(res => console.log(res.toString()));
+  this.http.delete(url).subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed; You can't delete this car"));
 }
 
 
 
 
 
-getCUsers(): void /*Observable<car>*/ {
+getCUsers(): void  {
   this.http.get(`${this.link}/GetUsers`).subscribe((x:User[])=>{this.AgencyInfo.usersList=x;});
 } 
 
@@ -184,8 +191,8 @@ Returncar(regiserNumber:string):void {
   let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
  this.http
    .put(url, JSON.stringify(this.AgencyInfo.RegisterUser), { headers: {"content-type": "application/json" }})
-   .subscribe((price:number)=>this.returnedCarPrice=price),
-   ()=>alert("Error");
+   .subscribe((price:number)=>{this.returnedCarPrice=price;alert("Car Returned")}),
+   ()=>alert("Action Failed");
    
    ;
 
@@ -195,7 +202,7 @@ updateCarInfo (car:Car) {
   let url = `${this.link}/EditCarData?car=${car}`;
   return this.http
   .put(url, JSON.stringify(car), { headers: {"content-type": "application/json" }})
-  .subscribe((x)=>console.log(x));
+  .subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
 }
 
 
@@ -204,13 +211,13 @@ updateCarInfo (car:Car) {
     console.log("DELETE");
     console.log(id);
     let url:string=`${this.link}/deleteuser/?userid=${id}`;
-    this.http.delete(url).subscribe(res => console.log(res.toString()));
+    this.http.delete(url).subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
   }
 
 
   deleteCar(carid:number) {
     let url:string=`${this.link}/deletecar/?carid=${carid}`;
-    this.http.delete(url).subscribe(res => console.log(res.toString()));
+    this.http.delete(url).subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
   }
 
 
