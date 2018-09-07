@@ -47,7 +47,6 @@ returnedCarPrice:number;
   }
 
 
-
 getCarCatalog(): void  {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.AgencyInfo.CarsCollection=x;
       this.AgencyInfo.filterCarCollection=this.AgencyInfo.CarsCollection;
@@ -178,10 +177,8 @@ returnCar(regiserNumber:string):void {
   let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
  this.http
    .put(url, JSON.stringify(this.AgencyInfo.RegisterUser), { headers: {"content-type": "application/json" }})
-   .subscribe((price:number)=>{this.returnedCarPrice=price;alert("Car Returned")}),
-   ()=>alert("Action Failed");
-   
-   ;
+   .subscribe((price:number)=>{this.returnedCarPrice=price;alert("Car Returned")},
+   ()=>alert("Action Failed"));
 
 }
 
