@@ -7,16 +7,13 @@ import { Order } from '../../shared/models/Order';
   templateUrl: './orderpage.component.html',
   styleUrls: ['./orderpage.component.css']
 })
-export class OrderpageComponent implements OnInit {
+export class OrderpageComponent  {
 
   constructor(private data:DataService) { 
-
-
-    
   }
 
 
-  postorder () {
+  postOrder () {
     let order:Order=new Order();
     order.OrderStartDate=this.data.AgencyInfo.currentCarOrderStartDate;
     order.OrderReturnDate=this.data.AgencyInfo.currentCarOrderEndDate;
@@ -24,19 +21,9 @@ export class OrderpageComponent implements OnInit {
     order.RegisterNumber=this.data.AgencyInfo.currentCarOrder.RegisterNumber;
   this.data.addUOrder(order);
 
-
 }
-
-
-
-  backtolist () {
-
+  backToList () {
   this.data.isPreview=false;
  }
-
-
-
-  ngOnInit() {
-  }
 
 }

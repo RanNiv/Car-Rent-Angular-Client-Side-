@@ -11,7 +11,7 @@ export class CarReturnComponent  {
   registerNumber:string;
   rentPrice:number;
   returnCar(){
-   this.data.Returncar(this.registerNumber);
+   this.data.returnCar(this.registerNumber);
   }
 
 

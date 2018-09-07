@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/services/data.service';
 import { Car } from '../../shared/models/car';
 
+
+
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent  {
+export class CatalogComponent   {
+
 
 optionList:Array<string>=new Array<string>();
 FilterSearchOption:string;
 filterCarCollection:Array<Car>;  
+
 
 
 constructor(private data:DataService) { 
@@ -24,10 +28,6 @@ this.data.isPreview=false;
     this.optionList.push("Manufacturer");
     this.optionList.push("Model");
     this.optionList.push("Free Text");
-
-
-    
-
   }
 
 searchValue:string;

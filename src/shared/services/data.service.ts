@@ -10,7 +10,6 @@ import { CarAgency } from '../models/CarAgency';
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +33,6 @@ returnedCarPrice:number;
 
 
 
-
   constructor(private http:HttpClient) { 
      this.currentDay=new Date();
      this.currentDay.setHours(0,0,0,0);
@@ -50,18 +48,15 @@ returnedCarPrice:number;
 
 
 
-getCarCatalog(): void /*Observable<car>*/ {
+getCarCatalog(): void  {
      this.http.get(`${this.link}/GetAllCarCatalog`).subscribe((x:Car[])=>{this.AgencyInfo.CarsCollection=x;
       this.AgencyInfo.filterCarCollection=this.AgencyInfo.CarsCollection;
-      
-
     });
 } 
 
 
-getCarsTypes(): void /*Observable<car>*/ {
+getCarsTypes(): void  {
   this.http.get(`${this.link}/GetAllCars`).subscribe((x:Car[])=>{
-
   let carTypes=new Set(x.map(m=>`${m.Manufacturer}-*-${m.Model}`));
   carTypes.forEach(x=>this.AgencyInfo.CarsTypesCollection.push(new CarType(x,true)));
   this.getCarCatalog();
@@ -73,7 +68,6 @@ updateCarsForRent():void {
    this.http.put(url, JSON.stringify(this.AgencyInfo.CarsTypesCollection), { headers: {"content-type": "application/json" }})
   .subscribe(()=> alert("Action Succeeded"),()=> alert("Action Failed"));
 }
-
 
 //Register Form 
 //The User will get Error message for every value that not match the ModelState
@@ -101,7 +95,6 @@ addUOrder(order:Order): void {
   this.http.post<boolean>(`${this.link}/addorder`,JSON.stringify(order), { headers: {"content-type": "application/json" }}).
   subscribe(()=>alert("Order Received"),()=>alert("Problem with the Order Please try again"));
   
-
 }
 
 
@@ -120,13 +113,9 @@ deleteOrder(orderid:number) {
 
 
 
-
-
 getCUsers(): void  {
   this.http.get(`${this.link}/GetUsers`).subscribe((x:User[])=>{this.AgencyInfo.usersList=x;});
 } 
-
-
 
 
 calculatePrice() {
@@ -158,13 +147,11 @@ else {
 }
 
 
-CheckCredentials(user:UserLogin): void {
+checkCredentials(user:UserLogin): void {
   let basicUrl=`${this.link}/GetUserName`;
   let apiURL = `${basicUrl}?name=${user.name}&&password=${user.password}`;
   this.http.get(apiURL).subscribe((x:User)=>{this.AgencyInfo.RegisterUser=x;});
 }
-
-
 
 
 getOrders (userid:number) {
@@ -186,7 +173,7 @@ getUserOrder (orderid:number) {
   }
 
 
-Returncar(regiserNumber:string):void {
+returnCar(regiserNumber:string):void {
 
   let url = `${this.link}/ReturnCar?registerNumber=${regiserNumber}`;
  this.http

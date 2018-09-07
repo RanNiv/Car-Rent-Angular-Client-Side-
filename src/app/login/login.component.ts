@@ -12,7 +12,7 @@ export class LoginComponent  {
 
   onSubmit(){
 
-  this.data.CheckCredentials(this.data.AgencyInfo.userLogin);
+  this.data.checkCredentials(this.data.AgencyInfo.userLogin);
   
 
   }
